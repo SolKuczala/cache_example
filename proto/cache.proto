@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package cache;
+
+option go_package = "cache/proto";
+
+service cacheService {
+  rpc Get(GetRequest) returns (GetReply);
+  rpc Set(SetRequest) returns (SetReply);
+  rpc CmpAndSet(CmpAndSetRequest) returns (CmpAndSetReply);
+}
+
+message GetRequest {
+  string key = 1;
+}
+message GetReply {
+  string value = 1;
+}
+
+message SetRequest {
+  string key   = 1;
+  string value = 2;
+}
+message SetReply {
+}
+
+message CmpAndSetRequest {
+  string key      = 1;
+  string oldValue = 2;
+  string newValue = 3;
+}
+message CmpAndSetReply {
+  bool changed = 1;
+}
